@@ -1,0 +1,26 @@
+{
+  "id": "neocron-classic-reshade-quality",
+  "name": "ReShade Quality — Ambient Occlusion + SSR (DX11)",
+  "version": "0.1.0",
+  "author": "igwtech / Neocron Community",
+  "description": "Depth-based ambient occlusion (qUINT MXAO) and screen-space reflections (qUINT SSR) layered on the base ReShade addon, with a Quality preset that also keeps the base clarity/sharpen pass. Uses the DX11 client's existing depth buffer — if AO looks flat or inverted, open the ReShade overlay (Home) and check DisplayDepth, then flip the depth options (see README).",
+  "category": "graphics",
+  "tags": ["reshade", "dx11", "ao", "mxao", "ssr", "ambient-occlusion", "depth"],
+  "files": [
+    { "src": "ReShade.ini",                "dst": "ReShade.ini" },
+    { "src": "NeocronClassic-Quality.ini", "dst": "NeocronClassic-Quality.ini" }
+  ],
+  "fetch": [
+    {
+      "from": "https://github.com/martymcmodding/qUINT/archive/refs/heads/master.tar.gz",
+      "extract": "tar.gz",
+      "files": [
+        { "src": "qUINT-master/Shaders/qUINT_mxao.fx",    "dst": "reshade-shaders/Shaders" },
+        { "src": "qUINT-master/Shaders/qUINT_ssr.fx",     "dst": "reshade-shaders/Shaders" },
+        { "src": "qUINT-master/Shaders/qUINT_common.fxh", "dst": "reshade-shaders/Shaders" }
+      ]
+    }
+  ],
+  "requires": ["neocron-classic-reshade"],
+  "conflicts": []
+}
