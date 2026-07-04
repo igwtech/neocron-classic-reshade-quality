@@ -18,9 +18,24 @@ AO + SSR under the base clarity/sharpen pass.
 - Keeps the base preset's Clarity / Colourfulness / Adaptive Sharpen / Curves.
 
 Both effects read the game's **depth buffer**, which the DX11 engine already
-renders (`sceneDepth`). This addon is also the plan's **probe**: if the depth
-buffer is accessible under your Proton/DXVK setup, AO/SSR work here — and the
-same access unblocks the deeper RenoDX PBR tiers.
+renders (`sceneDepth`).
+
+## ⚠ Required: turn OFF MSAA in-game first
+
+ReShade **cannot read a multisampled (MSAA) depth buffer**, and Neocron Classic
+ships with **MSAA 8×** on by default — so AO/SSR produce nothing until you disable
+it. This is a one-time setting:
+
+- **Options ▸ Graphics ▸ Anti-Aliasing / MSAA → Off** (leave **SMAA** on — it's a
+  separate post-process AA that still smooths edges and does not block depth).
+
+Or edit `settings.toml` (in the game's `Documents/My Games/Neocron Classic/`),
+`[graphics]` section: `msaa = 0`. With MSAA on, the ReShade *Add-ons ▸ Generic
+Depth* panel shows the depth buffers greyed out and the note *"disable MSAA … for
+depth buffer detection to work."*
+
+Verify with **DisplayDepth** (near = dark, far = light, or a clean normals view);
+then disable DisplayDepth to see AO applied to the game.
 
 ## Install
 
